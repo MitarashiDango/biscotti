@@ -1,0 +1,7 @@
+/target/
+**/*.rs.bk
+*.pdb
+*.sqlite
+*.sqlite3
+*.db
+*.log
