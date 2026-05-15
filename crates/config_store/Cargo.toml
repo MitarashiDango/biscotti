@@ -1,0 +1,16 @@
+[package]
+name = "config_store"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+directories.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+windows-sys.workspace = true
+
+[dev-dependencies]
+tempfile = "3"

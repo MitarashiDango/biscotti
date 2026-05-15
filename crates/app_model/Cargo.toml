@@ -1,0 +1,20 @@
+[package]
+name = "app_model"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+config_store = { path = "../config_store" }
+file_ready_checker = { path = "../file_ready_checker" }
+history_store = { path = "../history_store" }
+photo_watcher = { path = "../photo_watcher" }
+qr_core = { path = "../qr_core" }
+tokio.workspace = true
+
+[dev-dependencies]
+image.workspace = true
+qrcode = "0.14"
+tempfile = "3"

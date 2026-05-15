@@ -1,0 +1,5 @@
+# Force LF line endings for files validated in CI by diff comparison.
+# Without this, Windows checkouts with core.autocrlf=true would produce
+# spurious diffs against cargo-about's LF output.
+THIRD-PARTY-LICENSES text eol=lf
+about.hbs text eol=lf
