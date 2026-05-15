@@ -43,12 +43,12 @@ jobs:
       - name: cargo test
         run: cargo test --workspace --features biscotti/gui
 
-      - name: Verify THIRD-PARTY-LICENSES is current
+      - name: Verify license inventory builds (catches unaccepted licenses)
         shell: pwsh
         run: |
-          cargo about generate --all-features about.hbs -o THIRD-PARTY-LICENSES
-          git diff --exit-code -- THIRD-PARTY-LICENSES
+          $output = Join-Path $env:RUNNER_TEMP 'THIRD-PARTY-LICENSES.check'
+          cargo about generate --all-features about.hbs -o $output
           if ($LASTEXITCODE -ne 0) {
-            Write-Host "::error::THIRD-PARTY-LICENSES is out of date. Run 'cargo about generate --all-features about.hbs -o THIRD-PARTY-LICENSES' locally and commit the result."
+            Write-Host "::error::cargo about failed to generate the license inventory. A dependency may have an unaccepted license; update about.toml's 'accepted' list if appropriate."
             exit 1
           }

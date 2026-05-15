@@ -30,15 +30,23 @@ jobs:
         shell: pwsh
         run: |
           $tagVersion = "${{ github.ref_name }}".TrimStart("v")
-          $cargoVersion = (Select-String -Path 'crates\biscotti\Cargo.toml' -Pattern '^version\s*=\s*"([^"]+)"' | Select-Object -First 1).Matches.Groups[1].Value
+          $cargoVersion = (Select-String -Path 'Cargo.toml' -Pattern '^version\s*=\s*"([^"]+)"' | Select-Object -First 1).Matches.Groups[1].Value
           if ($tagVersion -ne $cargoVersion) {
-            Write-Host "::error::Tag version '$tagVersion' does not match crates/biscotti/Cargo.toml version '$cargoVersion'."
+            Write-Host "::error::Tag version '$tagVersion' does not match workspace version '$cargoVersion' in Cargo.toml."
             exit 1
           }
           Write-Host "Version match confirmed: $tagVersion"
 
+      - name: Install cargo-about
+        uses: taiki-e/install-action@e1c4cd42111751368541a7cb5db3522bd1f846a4 # v2.78.0
+        with:
+          tool: cargo-about
+
       - name: cargo test
         run: cargo test --workspace --features biscotti/gui
+
+      - name: Generate THIRD-PARTY-LICENSES
+        run: cargo about generate --all-features about.hbs -o THIRD-PARTY-LICENSES
 
       - name: Build release binary
         run: cargo build --release --features gui

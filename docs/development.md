@@ -24,9 +24,8 @@ biscotti/
 │   ├── history_store/       ─ 履歴の永続化 (SQLite, rusqlite)
 │   ├── photo_watcher/       ─ ファイルシステム監視 (notify)
 │   └── qr_core/             ─ QR デコード (rqrr + 前処理)
-├── about.toml / about.hbs   ─ THIRD-PARTY-LICENSES 生成設定
-├── LICENSE                  ─ Apache License 2.0
-└── THIRD-PARTY-LICENSES     ─ 依存ライブラリのライセンス集約
+├── about.toml / about.hbs   ─ THIRD-PARTY-LICENSES 生成設定 (リリース時に使用)
+└── LICENSE                  ─ Apache License 2.0
 ```
 
 ## ビルド
@@ -92,27 +91,28 @@ cargo fmt --all
 cargo clippy --workspace --all-features -- -D warnings
 ```
 
-## THIRD-PARTY-LICENSES の再生成
+## THIRD-PARTY-LICENSES
 
-依存クレートを追加・更新した際は、`cargo about` で `THIRD-PARTY-LICENSES` を更新します。
+`THIRD-PARTY-LICENSES` (第三者ソフトウェアのライセンス集約) は**リポジトリには含まれません**。リリースワークフローがタグ push 時に `cargo about` で自動生成し、配布 ZIP に同梱します。
 
-### 初回セットアップ
+リポジトリには生成器の設定 (`about.toml`) とテンプレート (`about.hbs`) のみを置いています。
+
+### ローカルで確認 / 生成したい場合
 
 ```powershell
 cargo install --locked --features cli cargo-about
-```
-
-### 再生成コマンド
-
-```powershell
 cargo about generate --all-features about.hbs -o THIRD-PARTY-LICENSES
 ```
+
+生成されたファイルは `.gitignore` で除外されるため、誤ってコミットされる心配はありません。
 
 `--all-features` を付けることで、`gui` feature 経由で入る `gpui` / `arboard` などの依存も網羅されます。
 
 ### ライセンスエラーが出た場合
 
 `error: failed to satisfy license requirements` で停止した際は、未許可のライセンスが新たな依存に含まれています。`about.toml` の `accepted` 配列に追加可能なライセンスかを確認してから追記してください (Apache-2.0 と互換性のないライセンスを安易に追加しないこと)。
+
+CI でも `cargo about generate` の成功/失敗のみを検証しているため、未許可ライセンスの混入は PR 時点で検知されます。
 
 ## CI / リリース自動化
 
@@ -123,21 +123,11 @@ cargo about generate --all-features about.hbs -o THIRD-PARTY-LICENSES
 - `cargo fmt --check`
 - `cargo clippy --workspace --all-features -- -D warnings`
 - `cargo test --workspace --features biscotti/gui`
-- `cargo about generate` による `THIRD-PARTY-LICENSES` の再生成 + コミット済みファイルとの差分チェック
+- `cargo about generate` の試行 (未許可ライセンス混入の検知のみ。生成ファイルは破棄)
 
 `main` ブランチは保護されており、CI が green でない PR はマージできません。
 
-#### THIRD-PARTY-LICENSES がローカルで古い場合
-
-CI で「THIRD-PARTY-LICENSES is out of date」と表示された場合は、以下を実行してコミットを追加してください。
-
-```powershell
-cargo about generate --all-features about.hbs -o THIRD-PARTY-LICENSES
-git add THIRD-PARTY-LICENSES
-git commit -m "chore: regenerate THIRD-PARTY-LICENSES"
-```
-
-依存クレートが変わるたびに必要になるため、依存追加・更新の PR では同時に更新する運用にしてください。
+依存追加・更新時に未許可ライセンスが含まれていた場合は CI が失敗するので、`about.toml` の `accepted` を見直してください。
 
 ### リリース ([`.github/workflows/release.yml`](../.github/workflows/release.yml))
 
@@ -158,6 +148,7 @@ git commit -m "chore: regenerate THIRD-PARTY-LICENSES"
 3. タグの push をトリガーに、以下が自動実行されます。
    - タグのバージョンと `Cargo.toml` の整合性チェック (不一致時はエラーで停止)
    - `cargo test --workspace --features biscotti/gui` によるテスト実行
+   - `cargo about generate` による `THIRD-PARTY-LICENSES` の生成
    - `cargo build --release --features gui` によるリリースバイナリのビルド
    - `biscotti.exe` / `LICENSE` / `THIRD-PARTY-LICENSES` (および `NOTICE` がある場合) を ZIP にまとめる
    - SHA-256 チェックサムファイルの生成
