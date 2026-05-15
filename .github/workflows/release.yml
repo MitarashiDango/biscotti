@@ -1,0 +1,77 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release:
+    name: Build and publish Windows release
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable (pinned)
+
+      - name: Cache cargo registry and target
+        uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+
+      - name: Verify tag matches Cargo.toml version
+        shell: pwsh
+        run: |
+          $tagVersion = "${{ github.ref_name }}".TrimStart("v")
+          $cargoVersion = (Select-String -Path 'crates\biscotti\Cargo.toml' -Pattern '^version\s*=\s*"([^"]+)"' | Select-Object -First 1).Matches.Groups[1].Value
+          if ($tagVersion -ne $cargoVersion) {
+            Write-Host "::error::Tag version '$tagVersion' does not match crates/biscotti/Cargo.toml version '$cargoVersion'."
+            exit 1
+          }
+          Write-Host "Version match confirmed: $tagVersion"
+
+      - name: cargo test
+        run: cargo test --workspace --features biscotti/gui
+
+      - name: Build release binary
+        run: cargo build --release --features gui
+
+      - name: Stage release artifacts
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}"
+          $stageDir = "dist/biscotti-$version-windows-x86_64"
+          New-Item -ItemType Directory -Path $stageDir -Force | Out-Null
+          Copy-Item target/release/biscotti.exe -Destination $stageDir
+          Copy-Item LICENSE -Destination $stageDir
+          Copy-Item THIRD-PARTY-LICENSES -Destination $stageDir
+          if (Test-Path NOTICE) {
+            Copy-Item NOTICE -Destination $stageDir
+          }
+          $zipPath = "dist/biscotti-$version-windows-x86_64.zip"
+          Compress-Archive -Path $stageDir -DestinationPath $zipPath -Force
+
+      - name: Compute SHA-256 checksum
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}"
+          $zipPath = "dist/biscotti-$version-windows-x86_64.zip"
+          $hash = (Get-FileHash $zipPath -Algorithm SHA256).Hash.ToLower()
+          $zipName = Split-Path $zipPath -Leaf
+          "$hash  $zipName" | Out-File "$zipPath.sha256" -Encoding ASCII
+
+      - name: Publish GitHub Release (draft)
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        with:
+          files: |
+            dist/*.zip
+            dist/*.sha256
+          draft: true
+          generate_release_notes: true
