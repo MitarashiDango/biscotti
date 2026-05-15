@@ -38,4 +38,4 @@ VRアプリケーションやスクリーンショットツールが書き出す
 
 本ソフトウェアは [Apache License 2.0](LICENSE) でライセンスされています。
 
-同梱する第三者ソフトウェアのライセンスは [`THIRD-PARTY-LICENSES`](THIRD-PARTY-LICENSES) を参照してください。
+同梱する第三者ソフトウェアのライセンス情報は、各 GitHub Release の配布 ZIP に含まれる `THIRD-PARTY-LICENSES` ファイルを参照してください。ローカルで確認したい場合は [開発者向けガイド](docs/development.md) の「THIRD-PARTY-LICENSES」セクションを参照ください。

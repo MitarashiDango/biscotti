@@ -5,3 +5,7 @@
 *.sqlite3
 *.db
 *.log
+
+# Generated at release time only; bundled into the release ZIP.
+# See about.toml / about.hbs for the generator configuration.
+/THIRD-PARTY-LICENSES
