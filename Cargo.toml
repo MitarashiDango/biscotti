@@ -1,0 +1,35 @@
+[workspace]
+members = [
+    "crates/app_model",
+    "crates/biscotti",
+    "crates/config_store",
+    "crates/file_ready_checker",
+    "crates/history_store",
+    "crates/photo_watcher",
+    "crates/qr_core",
+]
+resolver = "2"
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/MitarashiDango/biscotti"
+
+[workspace.dependencies]
+anyhow = "1"
+arboard = "3"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+directories = "6"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+notify = "8"
+open = "5"
+rfd = "0.15"
+rqrr = "0.10"
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time"] }
+uuid = { version = "1", features = ["v4"] }
+windows-sys = { version = "0.61", features = ["Win32_Storage_FileSystem"] }

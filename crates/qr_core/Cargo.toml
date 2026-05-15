@@ -1,0 +1,15 @@
+[package]
+name = "qr_core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+image.workspace = true
+rqrr.workspace = true
+
+[dev-dependencies]
+qrcode = "0.14"
+tempfile = "3"

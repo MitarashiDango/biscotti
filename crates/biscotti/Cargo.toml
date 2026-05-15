@@ -1,0 +1,30 @@
+[package]
+name = "biscotti"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+default-run = "biscotti"
+
+[package.metadata.biscotti]
+display-name = "Biscotti"
+
+[features]
+default = []
+gui = ["dep:chrono", "dep:gpui"]
+
+[dependencies]
+anyhow.workspace = true
+app_model = { path = "../app_model" }
+arboard.workspace = true
+chrono = { workspace = true, optional = true }
+config_store = { path = "../config_store" }
+gpui = { version = "0.2.2", optional = true }
+history_store = { path = "../history_store" }
+open.workspace = true
+photo_watcher = { path = "../photo_watcher" }
+rfd.workspace = true
+tokio.workspace = true
+
+[dev-dependencies]
+tempfile = "3"
