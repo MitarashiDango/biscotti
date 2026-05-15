@@ -9,7 +9,7 @@ for the configuration.
 Overview
 --------------------------------------------------------------------------------
 - Apache License 2.0 (468 crates)
-- MIT License (151 crates)
+- MIT License (152 crates)
 - Unicode License v3 (19 crates)
 - BSD 3-Clause "New" or "Revised" License (10 crates)
 - ISC License (7 crates)
@@ -6873,7 +6873,7 @@ Apache License 2.0 (Apache-2.0)
 --------------------------------------------------------------------------------
 
 Used by:
-- hashlink 0.9.1 <https://github.com/kyren/hashlink>
+- hashlink 0.11.0 <https://github.com/kyren/hashlink>
 
 License text:
 
@@ -12139,6 +12139,38 @@ MIT License (MIT)
 --------------------------------------------------------------------------------
 
 Used by:
+- libsqlite3-sys 0.37.0 <https://github.com/rusqlite/rusqlite>
+- rusqlite 0.39.0 <https://github.com/rusqlite/rusqlite>
+
+License text:
+
+Copyright (c) 2014 The rusqlite developers
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+================================================================================
+
+MIT License (MIT)
+--------------------------------------------------------------------------------
+
+Used by:
 - nom 8.0.0 <https://github.com/rust-bakery/nom>
 
 License text:
@@ -12194,38 +12226,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
-
-
-================================================================================
-
-MIT License (MIT)
---------------------------------------------------------------------------------
-
-Used by:
-- libsqlite3-sys 0.30.1 <https://github.com/rusqlite/rusqlite>
-- rusqlite 0.32.1 <https://github.com/rusqlite/rusqlite>
-
-License text:
-
-Copyright (c) 2014-2021 The rusqlite developers
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
 
 
 ================================================================================
@@ -13812,7 +13812,7 @@ MIT License (MIT)
 --------------------------------------------------------------------------------
 
 Used by:
-- rfd 0.15.4 <https://github.com/PolyMeilex/rfd>
+- rfd 0.17.2 <https://github.com/PolyMeilex/rfd>
 
 License text:
 
@@ -14077,6 +14077,39 @@ MIT License (MIT)
 --------------------------------------------------------------------------------
 
 Used by:
+- sqlite-wasm-rs 0.5.3 <https://github.com/Spxg/sqlite-wasm-rs>
+
+License text:
+
+MIT License
+
+Copyright (c) 2024 Spxg
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+================================================================================
+
+MIT License (MIT)
+--------------------------------------------------------------------------------
+
+Used by:
 - blade-graphics 0.7.1 <https://github.com/kvark/blade>
 - blade-macros 0.3.0 <https://github.com/kvark/blade>
 - blade-util 0.3.0 <https://github.com/kvark/blade>
@@ -14088,6 +14121,7 @@ Used by:
 - objc2-encode 4.1.0 <https://github.com/madsmtm/objc2>
 - objc2-foundation 0.3.2 <https://github.com/madsmtm/objc2>
 - objc2 0.6.4 <https://github.com/madsmtm/objc2>
+- rsqlite-vfs 0.1.0
 - seahash 4.1.0 <https://gitlab.redox-os.org/redox-os/seahash>
 - simd_helpers 0.1.0 <https://github.com/lu-zero/simd_helpers>
 - taffy 0.9.0 <https://github.com/DioxusLabs/taffy>
@@ -15116,38 +15150,6 @@ all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
-================================================================================
-
-MIT License (MIT)
---------------------------------------------------------------------------------
-
-Used by:
-- urlencoding 2.1.3 <https://github.com/kornelski/rust_urlencoding>
-
-License text:
-
-© 2016 Bertram Truong
-© 2021 Kornel Lesiński
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
